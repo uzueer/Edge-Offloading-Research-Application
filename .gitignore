@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.*
+!.env.example
+coverage/
+.venv/
+__pycache__/
+.pytest_cache/
+analysis/outputs/
+frontend/dist/

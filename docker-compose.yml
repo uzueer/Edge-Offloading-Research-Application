@@ -1,0 +1,116 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: edge_offloading
+      POSTGRES_USER: edge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-edge_dev_only}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U edge -d edge_offloading"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  edge-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    environment:
+      NODE_ID: edge-1
+      NODE_ROLE: edge
+      CAPACITY_MIPS: ${EDGE_1_CAPACITY_MIPS:-1600}
+      EXECUTION_SLOTS: ${EDGE_1_EXECUTION_SLOTS:-1}
+      CONFIGURED_MEMORY_MB: ${EDGE_1_MEMORY_MB:-1024}
+      SIMULATED_NETWORK_RTT_MS: ${EDGE_1_NETWORK_RTT_MS:-8}
+    ports:
+      - "${EDGE_1_PORT:-8101}:8000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  edge-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    environment:
+      NODE_ID: edge-2
+      NODE_ROLE: edge
+      CAPACITY_MIPS: ${EDGE_2_CAPACITY_MIPS:-2200}
+      EXECUTION_SLOTS: ${EDGE_2_EXECUTION_SLOTS:-2}
+      CONFIGURED_MEMORY_MB: ${EDGE_2_MEMORY_MB:-2048}
+      SIMULATED_NETWORK_RTT_MS: ${EDGE_2_NETWORK_RTT_MS:-14}
+    ports:
+      - "${EDGE_2_PORT:-8102}:8000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  cloud-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    environment:
+      NODE_ID: cloud-1
+      NODE_ROLE: cloud
+      CAPACITY_MIPS: ${CLOUD_1_CAPACITY_MIPS:-5000}
+      EXECUTION_SLOTS: ${CLOUD_1_EXECUTION_SLOTS:-4}
+      CONFIGURED_MEMORY_MB: ${CLOUD_1_MEMORY_MB:-8192}
+      SIMULATED_NETWORK_RTT_MS: ${CLOUD_1_NETWORK_RTT_MS:-40}
+    ports:
+      - "${CLOUD_1_PORT:-8103}:8000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      DATABASE_URL: postgres://edge:${POSTGRES_PASSWORD:-edge_dev_only}@postgres:5432/edge_offloading
+      API_PORT: 3000
+      WORKER_EDGE_1_URL: http://edge-1:8000
+      WORKER_EDGE_2_URL: http://edge-2:8000
+      WORKER_CLOUD_1_URL: http://cloud-1:8000
+      SIMULATE_NETWORK: "true"
+    ports:
+      - "${API_PORT:-3000}:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      edge-1:
+        condition: service_healthy
+      edge-2:
+        condition: service_healthy
+      cloud-1:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    environment:
+      API_PROXY_TARGET: http://api:3000
+    ports:
+      - "${DASHBOARD_PORT:-5173}:5173"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

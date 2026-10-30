@@ -1,0 +1,212 @@
+{
+  "experiment": {
+    "id": "9260152a-9ad9-4c0b-908a-ca31e1e3de90",
+    "name": "Phase 6 analysis validation smoke run",
+    "randomSeed": 26029,
+    "configuration": {
+      "name": "Phase 6 analysis validation smoke run",
+      "memoryMB": 16,
+      "taskCount": 6,
+      "randomSeed": 26029,
+      "repetitions": 2,
+      "nodeProfiles": {
+        "edge-1": {
+          "capacityMips": 1600,
+          "networkRttMs": 8
+        },
+        "edge-2": {
+          "capacityMips": 2200,
+          "networkRttMs": 14
+        },
+        "cloud-1": {
+          "capacityMips": 5000,
+          "networkRttMs": 40
+        }
+      },
+      "iterationsMax": 30000,
+      "iterationsMin": 10000,
+      "workloadMIMax": 12,
+      "workloadMIMin": 1,
+      "minCapacityMips": 0,
+      "arrivalIntervalMs": 4
+    }
+  },
+  "analysisSoftware": {
+    "python": "3.12.14",
+    "pandas": "2.2.3",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2"
+  },
+  "algorithmSummaries": {
+    "round-robin": {
+      "taskCount": 12,
+      "succeededCount": 12,
+      "failedCount": 0,
+      "successRate": 1.0,
+      "failureRate": 0.0,
+      "meanResponseTimeMs": 45.564940000000206,
+      "medianResponseTimeMs": 45.735515500000474,
+      "p95ResponseTimeMs": 71.36095100000239,
+      "meanQueueingTimeMs": 0.02946808333338898,
+      "meanExecutionTimeMs": 1.4596126666668472,
+      "meanSchedulingOverheadMs": 0.06715891666711589,
+      "meanAbsolutePredictionErrorMs": 2.0768374124988833,
+      "meanPredictionErrorMs": -1.0984076973482495,
+      "meanThroughputTasksPerSecond": 34.70116806296424,
+      "meanResponseTime95CIByRepetitionMs": [
+        39.257021000000044,
+        51.87285900000037
+      ],
+      "responseTimeCIRepetitions": 2,
+      "perRepetition": [
+        {
+          "repetition": 0,
+          "taskCount": 6,
+          "succeededCount": 6,
+          "failedCount": 0,
+          "meanResponseTimeMs": 51.87285900000037,
+          "throughputTasksPerSecond": 28.73493665531673,
+          "meanQueueingTimeMs": 0.05241050000040559,
+          "meanExecutionTimeMs": 1.7821954999999434,
+          "meanSchedulingOverheadMs": 0.09793500000038573
+        },
+        {
+          "repetition": 1,
+          "taskCount": 6,
+          "succeededCount": 6,
+          "failedCount": 0,
+          "meanResponseTimeMs": 39.257021000000044,
+          "throughputTasksPerSecond": 40.667399470611755,
+          "meanQueueingTimeMs": 0.006525666666372369,
+          "meanExecutionTimeMs": 1.1370298333337512,
+          "meanSchedulingOverheadMs": 0.036382833333846065
+        }
+      ]
+    },
+    "edge-only": {
+      "taskCount": 12,
+      "succeededCount": 12,
+      "failedCount": 0,
+      "successRate": 1.0,
+      "failureRate": 0.0,
+      "meanResponseTimeMs": 24.699975249999927,
+      "medianResponseTimeMs": 24.555270999997447,
+      "p95ResponseTimeMs": 28.459279999999126,
+      "meanQueueingTimeMs": 0.0027360833337297663,
+      "meanExecutionTimeMs": 0.3720588333332368,
+      "meanSchedulingOverheadMs": 0.03427441666675198,
+      "meanAbsolutePredictionErrorMs": 3.674592635416366,
+      "meanPredictionErrorMs": -3.674592635416366,
+      "meanThroughputTasksPerSecond": 56.01437563060985,
+      "meanResponseTime95CIByRepetitionMs": [
+        23.95459600000019,
+        25.445354499999667
+      ],
+      "responseTimeCIRepetitions": 2,
+      "perRepetition": [
+        {
+          "repetition": 0,
+          "taskCount": 6,
+          "succeededCount": 6,
+          "failedCount": 0,
+          "meanResponseTimeMs": 25.445354499999667,
+          "throughputTasksPerSecond": 52.86622988234952,
+          "meanQueueingTimeMs": 0.0031810000000405125,
+          "meanExecutionTimeMs": 0.414883833333685,
+          "meanSchedulingOverheadMs": 0.050472166666925965
+        },
+        {
+          "repetition": 1,
+          "taskCount": 6,
+          "succeededCount": 6,
+          "failedCount": 0,
+          "meanResponseTimeMs": 23.95459600000019,
+          "throughputTasksPerSecond": 59.16252137887017,
+          "meanQueueingTimeMs": 0.00229116666741902,
+          "meanExecutionTimeMs": 0.3292338333327886,
+          "meanSchedulingOverheadMs": 0.018076666666577996
+        }
+      ]
+    },
+    "latency-aware": {
+      "taskCount": 12,
+      "succeededCount": 12,
+      "failedCount": 0,
+      "successRate": 1.0,
+      "failureRate": 0.0,
+      "meanResponseTimeMs": 26.082966750000196,
+      "medianResponseTimeMs": 25.388263500002722,
+      "p95ResponseTimeMs": 36.497401000000536,
+      "meanQueueingTimeMs": 0.0026039166677946923,
+      "meanExecutionTimeMs": 0.5094885833326165,
+      "meanSchedulingOverheadMs": 0.0808726666673465,
+      "meanAbsolutePredictionErrorMs": 3.5372950520829214,
+      "meanPredictionErrorMs": -3.5372950520829214,
+      "meanThroughputTasksPerSecond": 54.246372453968604,
+      "meanResponseTime95CIByRepetitionMs": [
+        24.77550966666725,
+        27.39042383333314
+      ],
+      "responseTimeCIRepetitions": 2,
+      "perRepetition": [
+        {
+          "repetition": 0,
+          "taskCount": 6,
+          "succeededCount": 6,
+          "failedCount": 0,
+          "meanResponseTimeMs": 27.39042383333314,
+          "throughputTasksPerSecond": 50.92847620080946,
+          "meanQueueingTimeMs": 0.0028596666670637205,
+          "meanExecutionTimeMs": 0.6029551666676222,
+          "meanSchedulingOverheadMs": 0.11078050000105577
+        },
+        {
+          "repetition": 1,
+          "taskCount": 6,
+          "succeededCount": 6,
+          "failedCount": 0,
+          "meanResponseTimeMs": 24.77550966666725,
+          "throughputTasksPerSecond": 57.56426870712775,
+          "meanQueueingTimeMs": 0.002348166668525664,
+          "meanExecutionTimeMs": 0.4160219999976107,
+          "meanSchedulingOverheadMs": 0.050964833333637216
+        }
+      ]
+    }
+  },
+  "pairedComparisons": [
+    {
+      "baseline": "round-robin",
+      "pairedTaskCount": 12,
+      "independentRepetitionCount": 2,
+      "meanBaselineMinusLatencyAwareMs": 19.48197325000001,
+      "pairedMeanDifference95CIByRepetitionMs": [
+        14.481511333332795,
+        24.482435166667226
+      ],
+      "exactTwoSidedSignTestPValueOnRepetitionMeans": 0.5,
+      "latencyAwareRelativePerformanceImprovementPercent": 42.75649929529134
+    },
+    {
+      "baseline": "edge-only",
+      "pairedTaskCount": 12,
+      "independentRepetitionCount": 2,
+      "meanBaselineMinusLatencyAwareMs": -1.3829915000002682,
+      "pairedMeanDifference95CIByRepetitionMs": [
+        -1.9450693333334736,
+        -0.8209136666670626
+      ],
+      "exactTwoSidedSignTestPValueOnRepetitionMeans": 0.5,
+      "latencyAwareRelativePerformanceImprovementPercent": -5.599161480942267
+    }
+  ],
+  "methodology": {
+    "responseTime": "successful task API-side responseMs values from the export; failures are reported separately",
+    "confidenceIntervals": "percentile bootstrap over independent run/repetition means; no interval is emitted for fewer than two repetitions",
+    "pairedComparison": "matched trace task mean response differences, summarized at the repetition level",
+    "signTest": "exact two-sided sign test over nonzero repetition-level paired mean differences; small repetition counts are low power",
+    "predictionError": "uses the exported modelled actual component total (network + worker queue + worker execution) minus predicted total; API response time is separate",
+    "networkLimit": "configured simulated RTT on single-host containers is not geographic network evidence",
+    "interpretation": "descriptive and comparative output only; no performance benefit or statistical significance is assumed"
+  }
+}

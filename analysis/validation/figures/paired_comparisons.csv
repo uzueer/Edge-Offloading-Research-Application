@@ -1,0 +1,3 @@
+baseline,pairedTaskCount,independentRepetitionCount,meanBaselineMinusLatencyAwareMs,pairedMeanDifference95CIByRepetitionMs,exactTwoSidedSignTestPValueOnRepetitionMeans,latencyAwareRelativePerformanceImprovementPercent
+round-robin,12,2,19.48197325000001,"[14.481511333332795, 24.482435166667226]",0.5,42.75649929529134
+edge-only,12,2,-1.3829915000002682,"[-1.9450693333334736, -0.8209136666670626]",0.5,-5.599161480942267

@@ -1,0 +1,23 @@
+{
+  "name": "edge-cloud-task-offloading",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node test/run.js",
+    "db:migrate": "node src/db/migrate.js",
+    "start": "node src/api/server.js",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "vite": "^8.3.5"
+  }
+}
