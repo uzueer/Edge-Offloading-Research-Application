@@ -1,0 +1,34 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "repetitions": 30,
+  "randomSeed": 20261114,
+  "taskCounts": [50, 100, 250, 500],
+  "iterationsMin": 10000,
+  "iterationsMax": 50000,
+  "workloadMIMin": 1,
+  "workloadMIMax": 50,
+  "memoryMBMin": 64,
+  "memoryMBMax": 1024,
+  "minCapacityMipsMin": 0,
+  "minCapacityMipsMax": 1000,
+  "arrivalIntervalMs": 2,
+  "warmupTasks": 6,
+  "networkProfiles": {
+    "low": {"edge-1": 5, "edge-2": 10, "cloud-1": 25},
+    "medium": {"edge-1": 10, "edge-2": 30, "cloud-1": 60},
+    "high": {"edge-1": 20, "edge-2": 50, "cloud-1": 100},
+    "asymmetric": {"edge-1": 5, "edge-2": 40, "cloud-1": 15}
+  },
+  "capacityProfiles": {
+    "edge_faster": {
+      "edge-1": {"capacityMips": 5000, "executionSlots": 2, "availableMemoryMB": 4096},
+      "edge-2": {"capacityMips": 4000, "executionSlots": 2, "availableMemoryMB": 4096},
+      "cloud-1": {"capacityMips": 1500, "executionSlots": 1, "availableMemoryMB": 2048}
+    },
+    "cloud_faster": {
+      "edge-1": {"capacityMips": 1200, "executionSlots": 1, "availableMemoryMB": 1024},
+      "edge-2": {"capacityMips": 1800, "executionSlots": 1, "availableMemoryMB": 2048},
+      "cloud-1": {"capacityMips": 7000, "executionSlots": 4, "availableMemoryMB": 8192}
+    }
+  }
+}

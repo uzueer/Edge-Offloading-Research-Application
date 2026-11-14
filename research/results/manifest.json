@@ -1,0 +1,634 @@
+{
+  "experiments": {
+    "tasks=50|network=low|capacity=default": {
+      "experimentId": "a9093359-6d04-4fe9-8be2-08a7bced2d6a",
+      "warmupId": "3f92c9e9-280e-438a-a187-64e8283fd7be",
+      "seed": 4119992799,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=low|capacity=default",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 4119992799,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "networkRttMs": 5
+          },
+          "edge-2": {
+            "networkRttMs": 10
+          },
+          "cloud-1": {
+            "networkRttMs": 25
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "low",
+          "capacityProfile": "default",
+          "simulatedRTTMs": {
+            "edge-1": 5,
+            "edge-2": 10,
+            "cloud-1": 25
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=low|capacity=edge_faster": {
+      "experimentId": "ac0c4869-c58f-414e-a192-b8ce74adf301",
+      "warmupId": "f84483db-dc18-4ca5-a6ea-77ea2b173f53",
+      "seed": 83293641,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=low|capacity=edge_faster",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 83293641,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "capacityMips": 5000,
+            "executionSlots": 2,
+            "availableMemoryMB": 4096,
+            "networkRttMs": 5
+          },
+          "edge-2": {
+            "capacityMips": 4000,
+            "executionSlots": 2,
+            "availableMemoryMB": 4096,
+            "networkRttMs": 10
+          },
+          "cloud-1": {
+            "capacityMips": 1500,
+            "executionSlots": 1,
+            "availableMemoryMB": 2048,
+            "networkRttMs": 25
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "low",
+          "capacityProfile": "edge_faster",
+          "simulatedRTTMs": {
+            "edge-1": 5,
+            "edge-2": 10,
+            "cloud-1": 25
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=low|capacity=cloud_faster": {
+      "experimentId": "21fddb6f-8800-48b3-94d6-cecbe7079bfc",
+      "warmupId": "7209f6a3-2f2e-4175-9115-7afd1048a460",
+      "seed": 257012373,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=low|capacity=cloud_faster",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 257012373,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "capacityMips": 1200,
+            "executionSlots": 1,
+            "availableMemoryMB": 1024,
+            "networkRttMs": 5
+          },
+          "edge-2": {
+            "capacityMips": 1800,
+            "executionSlots": 1,
+            "availableMemoryMB": 2048,
+            "networkRttMs": 10
+          },
+          "cloud-1": {
+            "capacityMips": 7000,
+            "executionSlots": 4,
+            "availableMemoryMB": 8192,
+            "networkRttMs": 25
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "low",
+          "capacityProfile": "cloud_faster",
+          "simulatedRTTMs": {
+            "edge-1": 5,
+            "edge-2": 10,
+            "cloud-1": 25
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=medium|capacity=default": {
+      "experimentId": "958c525d-6228-4fdc-b9f4-f49bb71b4f42",
+      "warmupId": "f760a60c-ef4d-453e-91c9-b83aea390e5e",
+      "seed": 2647311852,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=medium|capacity=default",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 2647311852,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "networkRttMs": 10
+          },
+          "edge-2": {
+            "networkRttMs": 30
+          },
+          "cloud-1": {
+            "networkRttMs": 60
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "medium",
+          "capacityProfile": "default",
+          "simulatedRTTMs": {
+            "edge-1": 10,
+            "edge-2": 30,
+            "cloud-1": 60
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=medium|capacity=edge_faster": {
+      "experimentId": "5dc6eda1-ec4e-4835-99b3-6b67edfe5519",
+      "warmupId": "43391045-28fe-468a-8782-4dce5508d212",
+      "seed": 1440721005,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=medium|capacity=edge_faster",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 1440721005,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "capacityMips": 5000,
+            "executionSlots": 2,
+            "availableMemoryMB": 4096,
+            "networkRttMs": 10
+          },
+          "edge-2": {
+            "capacityMips": 4000,
+            "executionSlots": 2,
+            "availableMemoryMB": 4096,
+            "networkRttMs": 30
+          },
+          "cloud-1": {
+            "capacityMips": 1500,
+            "executionSlots": 1,
+            "availableMemoryMB": 2048,
+            "networkRttMs": 60
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "medium",
+          "capacityProfile": "edge_faster",
+          "simulatedRTTMs": {
+            "edge-1": 10,
+            "edge-2": 30,
+            "cloud-1": 60
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=medium|capacity=cloud_faster": {
+      "experimentId": "3aaa1023-c609-4f8a-9391-eeede3a7ab2e",
+      "warmupId": "3e81ad21-51ed-4f6a-bf6d-fa4cb9386910",
+      "seed": 984324685,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=medium|capacity=cloud_faster",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 984324685,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "capacityMips": 1200,
+            "executionSlots": 1,
+            "availableMemoryMB": 1024,
+            "networkRttMs": 10
+          },
+          "edge-2": {
+            "capacityMips": 1800,
+            "executionSlots": 1,
+            "availableMemoryMB": 2048,
+            "networkRttMs": 30
+          },
+          "cloud-1": {
+            "capacityMips": 7000,
+            "executionSlots": 4,
+            "availableMemoryMB": 8192,
+            "networkRttMs": 60
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "medium",
+          "capacityProfile": "cloud_faster",
+          "simulatedRTTMs": {
+            "edge-1": 10,
+            "edge-2": 30,
+            "cloud-1": 60
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=high|capacity=default": {
+      "experimentId": "304746e3-41ec-40bb-b31d-3378fae4e7e1",
+      "warmupId": "9b435690-9053-4550-9d99-04e106593b6e",
+      "seed": 489093153,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=high|capacity=default",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 489093153,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "networkRttMs": 20
+          },
+          "edge-2": {
+            "networkRttMs": 50
+          },
+          "cloud-1": {
+            "networkRttMs": 100
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "high",
+          "capacityProfile": "default",
+          "simulatedRTTMs": {
+            "edge-1": 20,
+            "edge-2": 50,
+            "cloud-1": 100
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=high|capacity=edge_faster": {
+      "experimentId": "9fdeecbd-91ce-44eb-9aa6-6645e923c0e2",
+      "warmupId": "298f3611-3c94-4dd5-b2af-1a9490d55ae1",
+      "seed": 192001030,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=high|capacity=edge_faster",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 192001030,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "capacityMips": 5000,
+            "executionSlots": 2,
+            "availableMemoryMB": 4096,
+            "networkRttMs": 20
+          },
+          "edge-2": {
+            "capacityMips": 4000,
+            "executionSlots": 2,
+            "availableMemoryMB": 4096,
+            "networkRttMs": 50
+          },
+          "cloud-1": {
+            "capacityMips": 1500,
+            "executionSlots": 1,
+            "availableMemoryMB": 2048,
+            "networkRttMs": 100
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "high",
+          "capacityProfile": "edge_faster",
+          "simulatedRTTMs": {
+            "edge-1": 20,
+            "edge-2": 50,
+            "cloud-1": 100
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=high|capacity=cloud_faster": {
+      "experimentId": "c07e2111-507d-424b-8585-2ec26cb23c3f",
+      "warmupId": "dda68639-41dd-45f4-bb64-83add6f78ddd",
+      "seed": 2353313614,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=high|capacity=cloud_faster",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 2353313614,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "capacityMips": 1200,
+            "executionSlots": 1,
+            "availableMemoryMB": 1024,
+            "networkRttMs": 20
+          },
+          "edge-2": {
+            "capacityMips": 1800,
+            "executionSlots": 1,
+            "availableMemoryMB": 2048,
+            "networkRttMs": 50
+          },
+          "cloud-1": {
+            "capacityMips": 7000,
+            "executionSlots": 4,
+            "availableMemoryMB": 8192,
+            "networkRttMs": 100
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "high",
+          "capacityProfile": "cloud_faster",
+          "simulatedRTTMs": {
+            "edge-1": 20,
+            "edge-2": 50,
+            "cloud-1": 100
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=asymmetric|capacity=default": {
+      "experimentId": "453feb19-d6d3-4e22-9861-9fc6713ab166",
+      "warmupId": "bf4531bc-1949-4a83-b194-c619088c5e1c",
+      "seed": 3459405692,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=asymmetric|capacity=default",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 3459405692,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "networkRttMs": 5
+          },
+          "edge-2": {
+            "networkRttMs": 40
+          },
+          "cloud-1": {
+            "networkRttMs": 15
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "asymmetric",
+          "capacityProfile": "default",
+          "simulatedRTTMs": {
+            "edge-1": 5,
+            "edge-2": 40,
+            "cloud-1": 15
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=asymmetric|capacity=edge_faster": {
+      "experimentId": "233c6845-e0fa-43d2-bce3-8a289823aa03",
+      "warmupId": "23b45ecf-1cfc-46f8-98b1-c4d85a9a8f32",
+      "seed": 739939548,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=asymmetric|capacity=edge_faster",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 739939548,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "capacityMips": 5000,
+            "executionSlots": 2,
+            "availableMemoryMB": 4096,
+            "networkRttMs": 5
+          },
+          "edge-2": {
+            "capacityMips": 4000,
+            "executionSlots": 2,
+            "availableMemoryMB": 4096,
+            "networkRttMs": 40
+          },
+          "cloud-1": {
+            "capacityMips": 1500,
+            "executionSlots": 1,
+            "availableMemoryMB": 2048,
+            "networkRttMs": 15
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "asymmetric",
+          "capacityProfile": "edge_faster",
+          "simulatedRTTMs": {
+            "edge-1": 5,
+            "edge-2": 40,
+            "cloud-1": 15
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=50|network=asymmetric|capacity=cloud_faster": {
+      "experimentId": "97c57148-42d6-422b-8b9f-d3351838dd33",
+      "warmupId": "89da3021-9b43-4e11-8d8f-4c3a58f945b8",
+      "seed": 2747722573,
+      "status": "succeeded",
+      "configuration": {
+        "name": "benchmark tasks=50|network=asymmetric|capacity=cloud_faster",
+        "taskCount": 50,
+        "repetitions": 30,
+        "randomSeed": 2747722573,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "capacityMips": 1200,
+            "executionSlots": 1,
+            "availableMemoryMB": 1024,
+            "networkRttMs": 5
+          },
+          "edge-2": {
+            "capacityMips": 1800,
+            "executionSlots": 1,
+            "availableMemoryMB": 2048,
+            "networkRttMs": 40
+          },
+          "cloud-1": {
+            "capacityMips": 7000,
+            "executionSlots": 4,
+            "availableMemoryMB": 8192,
+            "networkRttMs": 15
+          }
+        },
+        "scenario": {
+          "taskCount": 50,
+          "networkProfile": "asymmetric",
+          "capacityProfile": "cloud_faster",
+          "simulatedRTTMs": {
+            "edge-1": 5,
+            "edge-2": 40,
+            "cloud-1": 15
+          }
+        }
+      },
+      "error": null
+    },
+    "tasks=100|network=low|capacity=default": {
+      "experimentId": "5ec2533f-c81f-453a-9af4-9ee8ff045bef",
+      "warmupId": "50d1faf1-be47-49f2-9f80-20e2b7721bd8",
+      "seed": 1254690159,
+      "status": "running",
+      "configuration": {
+        "name": "benchmark tasks=100|network=low|capacity=default",
+        "taskCount": 100,
+        "repetitions": 30,
+        "randomSeed": 1254690159,
+        "workloadMIMin": 1,
+        "workloadMIMax": 50,
+        "iterationsMin": 10000,
+        "iterationsMax": 50000,
+        "arrivalIntervalMs": 2,
+        "memoryMB": 64,
+        "memoryMBMax": 1024,
+        "minCapacityMips": 0,
+        "minCapacityMipsMax": 1000,
+        "nodeProfiles": {
+          "edge-1": {
+            "networkRttMs": 5
+          },
+          "edge-2": {
+            "networkRttMs": 10
+          },
+          "cloud-1": {
+            "networkRttMs": 25
+          }
+        },
+        "scenario": {
+          "taskCount": 100,
+          "networkProfile": "low",
+          "capacityProfile": "default",
+          "simulatedRTTMs": {
+            "edge-1": 5,
+            "edge-2": 10,
+            "cloud-1": 25
+          }
+        }
+      }
+    }
+  }
+}

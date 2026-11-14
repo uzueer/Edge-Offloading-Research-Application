@@ -6,5 +6,6 @@ coverage/
 .venv/
 __pycache__/
 .pytest_cache/
-analysis/outputs/
+research/analysis/outputs/
+.ipynb_checkpoints/
 frontend/dist/

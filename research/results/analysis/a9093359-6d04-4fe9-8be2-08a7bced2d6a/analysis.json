@@ -1,0 +1,1167 @@
+{
+  "experiment": {
+    "id": "a9093359-6d04-4fe9-8be2-08a7bced2d6a",
+    "name": "benchmark tasks=50|network=low|capacity=default",
+    "randomSeed": 4119992799,
+    "configuration": {
+      "name": "benchmark tasks=50|network=low|capacity=default",
+      "memoryMB": 64,
+      "scenario": {
+        "taskCount": 50,
+        "networkProfile": "low",
+        "simulatedRTTMs": {
+          "edge-1": 5,
+          "edge-2": 10,
+          "cloud-1": 25
+        },
+        "capacityProfile": "default"
+      },
+      "taskCount": 50,
+      "randomSeed": 4119992799,
+      "memoryMBMax": 1024,
+      "repetitions": 30,
+      "nodeProfiles": {
+        "edge-1": {
+          "networkRttMs": 5
+        },
+        "edge-2": {
+          "networkRttMs": 10
+        },
+        "cloud-1": {
+          "networkRttMs": 25
+        }
+      },
+      "iterationsMax": 50000,
+      "iterationsMin": 10000,
+      "workloadMIMax": 50,
+      "workloadMIMin": 1,
+      "minCapacityMips": 0,
+      "arrivalIntervalMs": 2,
+      "minCapacityMipsMax": 1000
+    }
+  },
+  "analysisSoftware": {
+    "python": "3.12.3",
+    "pandas": "2.2.3",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2"
+  },
+  "algorithmSummaries": {
+    "round-robin": {
+      "taskCount": 1500,
+      "succeededCount": 1500,
+      "failedCount": 0,
+      "successRate": 1.0,
+      "failureRate": 0.0,
+      "meanResponseTimeMs": 28.353103010666732,
+      "stdResponseTimeMs": 9.484007969758038,
+      "medianResponseTimeMs": 25.516960999999355,
+      "p95ResponseTimeMs": 44.015285999994376,
+      "p99ResponseTimeMs": 49.570833999998285,
+      "minResponseTimeMs": 13.368563000003633,
+      "maxResponseTimeMs": 65.55628699999943,
+      "meanQueueingTimeMs": 0.0029203999999978503,
+      "meanExecutionTimeMs": 0.8351736446668486,
+      "meanSchedulingOverheadMs": 0.01263542933340553,
+      "meanAbsolutePredictionErrorMs": 10.074469062625587,
+      "meanPredictionErrorMs": -10.031731640395273,
+      "meanThroughputTasksPerSecond": 70.66405481740416,
+      "meanResponseTime95CIByRepetitionMs": [
+        27.37255798036668,
+        29.463761161050083
+      ],
+      "responseTimeCIRepetitions": 30,
+      "perRepetition": [
+        {
+          "repetition": 0,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 29.970797280000042,
+          "throughputTasksPerSecond": 63.68748500159744,
+          "meanQueueingTimeMs": 0.003074519999936456,
+          "meanExecutionTimeMs": 0.6880726799998229,
+          "meanSchedulingOverheadMs": 0.013484540000063135
+        },
+        {
+          "repetition": 1,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 28.494008160000156,
+          "throughputTasksPerSecond": 68.60270836440257,
+          "meanQueueingTimeMs": 0.002837000000072294,
+          "meanExecutionTimeMs": 0.77564125999932,
+          "meanSchedulingOverheadMs": 0.012737460000062128
+        },
+        {
+          "repetition": 2,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 29.172755939999917,
+          "throughputTasksPerSecond": 65.48855695326873,
+          "meanQueueingTimeMs": 0.0031430399999953806,
+          "meanExecutionTimeMs": 0.7512257399997179,
+          "meanSchedulingOverheadMs": 0.014937819999831846
+        },
+        {
+          "repetition": 3,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 27.733561940000143,
+          "throughputTasksPerSecond": 72.40220556985344,
+          "meanQueueingTimeMs": 0.0033505600000353296,
+          "meanExecutionTimeMs": 0.8623847599999863,
+          "meanSchedulingOverheadMs": 0.014503619999886723
+        },
+        {
+          "repetition": 4,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 26.857013119999756,
+          "throughputTasksPerSecond": 75.94404819818779,
+          "meanQueueingTimeMs": 0.0030068399997253436,
+          "meanExecutionTimeMs": 0.6970040600001812,
+          "meanSchedulingOverheadMs": 0.013220900000160327
+        },
+        {
+          "repetition": 5,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 26.785475879999648,
+          "throughputTasksPerSecond": 76.78172896572107,
+          "meanQueueingTimeMs": 0.002957419999729609,
+          "meanExecutionTimeMs": 0.8953611200004525,
+          "meanSchedulingOverheadMs": 0.012245299999995041
+        },
+        {
+          "repetition": 6,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 30.271441859999833,
+          "throughputTasksPerSecond": 61.87247451408427,
+          "meanQueueingTimeMs": 0.0035191600004327484,
+          "meanExecutionTimeMs": 1.0211143399993308,
+          "meanSchedulingOverheadMs": 0.013891359999834095
+        },
+        {
+          "repetition": 7,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 27.879640660000003,
+          "throughputTasksPerSecond": 71.35860849251972,
+          "meanQueueingTimeMs": 0.0030402599996887146,
+          "meanExecutionTimeMs": 0.7618299400001706,
+          "meanSchedulingOverheadMs": 0.012830540000140899
+        },
+        {
+          "repetition": 8,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 26.831375600000175,
+          "throughputTasksPerSecond": 75.90551076771123,
+          "meanQueueingTimeMs": 0.002899600000382634,
+          "meanExecutionTimeMs": 0.7776561800000491,
+          "meanSchedulingOverheadMs": 0.010063800000498304
+        },
+        {
+          "repetition": 9,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 26.579996419999805,
+          "throughputTasksPerSecond": 76.80013927736,
+          "meanQueueingTimeMs": 0.002670639999123523,
+          "meanExecutionTimeMs": 0.7743532999997842,
+          "meanSchedulingOverheadMs": 0.008694759999052622
+        },
+        {
+          "repetition": 10,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 26.053249719999293,
+          "throughputTasksPerSecond": 80.39722894420707,
+          "meanQueueingTimeMs": 0.0025302600000577514,
+          "meanExecutionTimeMs": 0.8481225599999016,
+          "meanSchedulingOverheadMs": 0.008799720000533853
+        },
+        {
+          "repetition": 11,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 26.18339534000086,
+          "throughputTasksPerSecond": 79.01537512459251,
+          "meanQueueingTimeMs": 0.0024163199999020436,
+          "meanExecutionTimeMs": 0.7129367200004344,
+          "meanSchedulingOverheadMs": 0.009149880000186385
+        },
+        {
+          "repetition": 12,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 25.31987366000016,
+          "throughputTasksPerSecond": 84.47087829557037,
+          "meanQueueingTimeMs": 0.0022317799998563714,
+          "meanExecutionTimeMs": 0.7252939000006882,
+          "meanSchedulingOverheadMs": 0.011329579999728594
+        },
+        {
+          "repetition": 13,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 24.605793440000124,
+          "throughputTasksPerSecond": 88.36412037666,
+          "meanQueueingTimeMs": 0.001940219999960391,
+          "meanExecutionTimeMs": 0.6304357400003937,
+          "meanSchedulingOverheadMs": 0.01070118000076036
+        },
+        {
+          "repetition": 14,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 25.914032160000062,
+          "throughputTasksPerSecond": 80.04982993045394,
+          "meanQueueingTimeMs": 0.0024578399992606138,
+          "meanExecutionTimeMs": 0.7382608000008622,
+          "meanSchedulingOverheadMs": 0.012657160000380828
+        },
+        {
+          "repetition": 15,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 24.988312420000003,
+          "throughputTasksPerSecond": 86.70568054659213,
+          "meanQueueingTimeMs": 0.002579820000391919,
+          "meanExecutionTimeMs": 0.7947335400001612,
+          "meanSchedulingOverheadMs": 0.011121879999554949
+        },
+        {
+          "repetition": 16,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 27.849240519999874,
+          "throughputTasksPerSecond": 71.57943223996014,
+          "meanQueueingTimeMs": 0.0026437999997870067,
+          "meanExecutionTimeMs": 0.8681852800000343,
+          "meanSchedulingOverheadMs": 0.011862360000086482
+        },
+        {
+          "repetition": 17,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 26.7727776599997,
+          "throughputTasksPerSecond": 77.23597542554572,
+          "meanQueueingTimeMs": 0.00320469999947818,
+          "meanExecutionTimeMs": 0.8658030400007556,
+          "meanSchedulingOverheadMs": 0.010641800001030788
+        },
+        {
+          "repetition": 18,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 26.185849800000142,
+          "throughputTasksPerSecond": 78.56954217284286,
+          "meanQueueingTimeMs": 0.00276389999940875,
+          "meanExecutionTimeMs": 0.7828932600002736,
+          "meanSchedulingOverheadMs": 0.011261559999984455
+        },
+        {
+          "repetition": 19,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 27.368560059999727,
+          "throughputTasksPerSecond": 73.86235905682545,
+          "meanQueueingTimeMs": 0.0028794000000925734,
+          "meanExecutionTimeMs": 0.7833981599999242,
+          "meanSchedulingOverheadMs": 0.014641740000079152
+        },
+        {
+          "repetition": 20,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 27.74425767999972,
+          "throughputTasksPerSecond": 71.75507629708684,
+          "meanQueueingTimeMs": 0.002941560000326717,
+          "meanExecutionTimeMs": 0.7621239599997353,
+          "meanSchedulingOverheadMs": 0.012784100000426407
+        },
+        {
+          "repetition": 21,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 26.22809863999966,
+          "throughputTasksPerSecond": 79.26914872206348,
+          "meanQueueingTimeMs": 0.002893020000628894,
+          "meanExecutionTimeMs": 0.8317204800002219,
+          "meanSchedulingOverheadMs": 0.011079320000426378
+        },
+        {
+          "repetition": 22,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 29.962360919999774,
+          "throughputTasksPerSecond": 62.201622935635065,
+          "meanQueueingTimeMs": 0.003184459999902174,
+          "meanExecutionTimeMs": 1.014318820000335,
+          "meanSchedulingOverheadMs": 0.013986900000163586
+        },
+        {
+          "repetition": 23,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 33.08263245999988,
+          "throughputTasksPerSecond": 52.36778795694435,
+          "meanQueueingTimeMs": 0.0032272199995350094,
+          "meanExecutionTimeMs": 0.9707384800014551,
+          "meanSchedulingOverheadMs": 0.015279380000574747
+        },
+        {
+          "repetition": 24,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 32.80237608000025,
+          "throughputTasksPerSecond": 53.26121265194986,
+          "meanQueueingTimeMs": 0.004029840000439436,
+          "meanExecutionTimeMs": 1.0700864000004366,
+          "meanSchedulingOverheadMs": 0.014167719999386463
+        },
+        {
+          "repetition": 25,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 37.69908034000022,
+          "throughputTasksPerSecond": 42.66260363956929,
+          "meanQueueingTimeMs": 0.003797420000482816,
+          "meanExecutionTimeMs": 0.8541785200004233,
+          "meanSchedulingOverheadMs": 0.023265759999048896
+        },
+        {
+          "repetition": 26,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 34.46498967999971,
+          "throughputTasksPerSecond": 49.321030711214924,
+          "meanQueueingTimeMs": 0.0033000600003288126,
+          "meanExecutionTimeMs": 1.1509431599997333,
+          "meanSchedulingOverheadMs": 0.018356719999574125
+        },
+        {
+          "repetition": 27,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 30.839400700000695,
+          "throughputTasksPerSecond": 59.14522124426814,
+          "meanQueueingTimeMs": 0.002421679999679327,
+          "meanExecutionTimeMs": 0.7457728000011411,
+          "meanSchedulingOverheadMs": 0.012773040000756736
+        },
+        {
+          "repetition": 28,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 28.818405900000943,
+          "throughputTasksPerSecond": 67.14434180976741,
+          "meanQueueingTimeMs": 0.0026673600013600663,
+          "meanExecutionTimeMs": 1.0334069999997155,
+          "meanSchedulingOverheadMs": 0.009988360001007095
+        },
+        {
+          "repetition": 29,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 27.134336280001733,
+          "throughputTasksPerSecond": 73.69971033566898,
+          "meanQueueingTimeMs": 0.003002299999934621,
+          "meanExecutionTimeMs": 0.8672133400000166,
+          "meanSchedulingOverheadMs": 0.008604619998950512
+        }
+      ],
+      "responseOutlierCountTukey": 1
+    },
+    "edge-only": {
+      "taskCount": 1500,
+      "succeededCount": 1500,
+      "failedCount": 0,
+      "successRate": 1.0,
+      "failureRate": 0.0,
+      "meanResponseTimeMs": 19.261455271999967,
+      "stdResponseTimeMs": 4.082939246991802,
+      "medianResponseTimeMs": 18.134953500000847,
+      "p95ResponseTimeMs": 27.100343999998586,
+      "p99ResponseTimeMs": 32.1630699999987,
+      "minResponseTimeMs": 13.107231000001775,
+      "maxResponseTimeMs": 54.50735200000054,
+      "meanQueueingTimeMs": 0.0026708780000772093,
+      "meanExecutionTimeMs": 0.7805088779998671,
+      "meanSchedulingOverheadMs": 0.012136278666570433,
+      "meanAbsolutePredictionErrorMs": 14.991131935166724,
+      "meanPredictionErrorMs": -14.985555336500058,
+      "meanThroughputTasksPerSecond": 74.02631300366357,
+      "meanResponseTime95CIByRepetitionMs": [
+        18.459448487966643,
+        20.18717497801642
+      ],
+      "responseTimeCIRepetitions": 30,
+      "perRepetition": [
+        {
+          "repetition": 0,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.69607934000029,
+          "throughputTasksPerSecond": 64.41086231841564,
+          "meanQueueingTimeMs": 0.0032304200001090065,
+          "meanExecutionTimeMs": 0.7515570599998318,
+          "meanSchedulingOverheadMs": 0.016820939999961412
+        },
+        {
+          "repetition": 1,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 18.242264799999685,
+          "throughputTasksPerSecond": 78.67398497739411,
+          "meanQueueingTimeMs": 0.004610620000312338,
+          "meanExecutionTimeMs": 0.7181829199994536,
+          "meanSchedulingOverheadMs": 0.010652179999960936
+        },
+        {
+          "repetition": 2,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 19.86833665999977,
+          "throughputTasksPerSecond": 70.28156593114497,
+          "meanQueueingTimeMs": 0.003164279999837163,
+          "meanExecutionTimeMs": 0.8315718999999081,
+          "meanSchedulingOverheadMs": 0.014566739999645506
+        },
+        {
+          "repetition": 3,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 18.888849839999747,
+          "throughputTasksPerSecond": 74.82664902737193,
+          "meanQueueingTimeMs": 0.0037705599999753757,
+          "meanExecutionTimeMs": 0.7152665799998067,
+          "meanSchedulingOverheadMs": 0.012057979999808595
+        },
+        {
+          "repetition": 4,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 20.48053357999983,
+          "throughputTasksPerSecond": 66.47334091980295,
+          "meanQueueingTimeMs": 0.0029080799997609572,
+          "meanExecutionTimeMs": 0.6331128399998124,
+          "meanSchedulingOverheadMs": 0.014375479999798699
+        },
+        {
+          "repetition": 5,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 17.43516301999989,
+          "throughputTasksPerSecond": 81.28525144238311,
+          "meanQueueingTimeMs": 0.0023264800000470133,
+          "meanExecutionTimeMs": 0.6824942000002193,
+          "meanSchedulingOverheadMs": 0.0104066400002921
+        },
+        {
+          "repetition": 6,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.045446080000183,
+          "throughputTasksPerSecond": 66.1387025684475,
+          "meanQueueingTimeMs": 0.003337540000065928,
+          "meanExecutionTimeMs": 0.8400454799999716,
+          "meanSchedulingOverheadMs": 0.01495550000014191
+        },
+        {
+          "repetition": 7,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 19.88995255999951,
+          "throughputTasksPerSecond": 70.80222079605122,
+          "meanQueueingTimeMs": 0.0032610799997928553,
+          "meanExecutionTimeMs": 0.77716415999952,
+          "meanSchedulingOverheadMs": 0.013085599999394617
+        },
+        {
+          "repetition": 8,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 18.61837483999916,
+          "throughputTasksPerSecond": 75.4072450083537,
+          "meanQueueingTimeMs": 0.0027009400000679307,
+          "meanExecutionTimeMs": 0.6711470199999167,
+          "meanSchedulingOverheadMs": 0.01003041999952984
+        },
+        {
+          "repetition": 9,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 18.602225000000473,
+          "throughputTasksPerSecond": 77.00840685838067,
+          "meanQueueingTimeMs": 0.004155700000410434,
+          "meanExecutionTimeMs": 0.9228013999995892,
+          "meanSchedulingOverheadMs": 0.008949699999939185
+        },
+        {
+          "repetition": 10,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 17.84511229999989,
+          "throughputTasksPerSecond": 81.385752605266,
+          "meanQueueingTimeMs": 0.006351460000150837,
+          "meanExecutionTimeMs": 0.8744466599993757,
+          "meanSchedulingOverheadMs": 0.008660679999738932
+        },
+        {
+          "repetition": 11,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 19.167360640000407,
+          "throughputTasksPerSecond": 74.0209560876818,
+          "meanQueueingTimeMs": 0.001979600000049686,
+          "meanExecutionTimeMs": 0.7785068599997612,
+          "meanSchedulingOverheadMs": 0.010963259999844013
+        },
+        {
+          "repetition": 12,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 17.85842903999961,
+          "throughputTasksPerSecond": 81.20228677462565,
+          "meanQueueingTimeMs": 0.0020699199999216944,
+          "meanExecutionTimeMs": 0.8440241199999582,
+          "meanSchedulingOverheadMs": 0.012689540000428679
+        },
+        {
+          "repetition": 13,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.11632144000032,
+          "throughputTasksPerSecond": 67.72861504808333,
+          "meanQueueingTimeMs": 0.002525379999715369,
+          "meanExecutionTimeMs": 1.092925719999912,
+          "meanSchedulingOverheadMs": 0.016315920000342887
+        },
+        {
+          "repetition": 14,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 17.675321420000255,
+          "throughputTasksPerSecond": 80.3896395794022,
+          "meanQueueingTimeMs": 0.002891060000110883,
+          "meanExecutionTimeMs": 0.742439959999756,
+          "meanSchedulingOverheadMs": 0.01293946000005235
+        },
+        {
+          "repetition": 15,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 16.9764944199998,
+          "throughputTasksPerSecond": 85.701527352394,
+          "meanQueueingTimeMs": 0.0017070999997667968,
+          "meanExecutionTimeMs": 0.7662958000000799,
+          "meanSchedulingOverheadMs": 0.011640160000970354
+        },
+        {
+          "repetition": 16,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 16.64733554000035,
+          "throughputTasksPerSecond": 86.43063327330803,
+          "meanQueueingTimeMs": 0.0016686000002664515,
+          "meanExecutionTimeMs": 0.6997124600000098,
+          "meanSchedulingOverheadMs": 0.01095065999950748
+        },
+        {
+          "repetition": 17,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 16.55634224000023,
+          "throughputTasksPerSecond": 87.1850031555575,
+          "meanQueueingTimeMs": 0.0019059399995603598,
+          "meanExecutionTimeMs": 0.6823793400004797,
+          "meanSchedulingOverheadMs": 0.010214779999514575
+        },
+        {
+          "repetition": 18,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 16.853438800000294,
+          "throughputTasksPerSecond": 84.60775627594609,
+          "meanQueueingTimeMs": 0.0019492799999716226,
+          "meanExecutionTimeMs": 0.7261524200005806,
+          "meanSchedulingOverheadMs": 0.010781599999900209
+        },
+        {
+          "repetition": 19,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 16.75707290000035,
+          "throughputTasksPerSecond": 85.58577651897075,
+          "meanQueueingTimeMs": 0.001953939999366412,
+          "meanExecutionTimeMs": 0.6279651800004649,
+          "meanSchedulingOverheadMs": 0.01263236000057077
+        },
+        {
+          "repetition": 20,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 17.108326519999828,
+          "throughputTasksPerSecond": 82.39626763496152,
+          "meanQueueingTimeMs": 0.0018511999993643259,
+          "meanExecutionTimeMs": 0.6470976800001518,
+          "meanSchedulingOverheadMs": 0.011396519999980228
+        },
+        {
+          "repetition": 21,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 17.614827760000043,
+          "throughputTasksPerSecond": 80.42421806243063,
+          "meanQueueingTimeMs": 0.0019316799999796784,
+          "meanExecutionTimeMs": 0.780477719999617,
+          "meanSchedulingOverheadMs": 0.011183879999880447
+        },
+        {
+          "repetition": 22,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 16.641426179999254,
+          "throughputTasksPerSecond": 85.6983526275942,
+          "meanQueueingTimeMs": 0.0016437000007135793,
+          "meanExecutionTimeMs": 0.6769800400003442,
+          "meanSchedulingOverheadMs": 0.00927112000004854
+        },
+        {
+          "repetition": 23,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.83502403999999,
+          "throughputTasksPerSecond": 61.03042840330005,
+          "meanQueueingTimeMs": 0.002233000000996981,
+          "meanExecutionTimeMs": 0.7622564799987595,
+          "meanSchedulingOverheadMs": 0.012927959999506128
+        },
+        {
+          "repetition": 24,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 23.926156079999345,
+          "throughputTasksPerSecond": 54.45835796675429,
+          "meanQueueingTimeMs": 0.0025210800004424527,
+          "meanExecutionTimeMs": 0.9867341399998986,
+          "meanSchedulingOverheadMs": 0.013368640000699088
+        },
+        {
+          "repetition": 25,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 26.62907028000045,
+          "throughputTasksPerSecond": 47.583370559469856,
+          "meanQueueingTimeMs": 0.0023825800002668985,
+          "meanExecutionTimeMs": 0.7983699999991223,
+          "meanSchedulingOverheadMs": 0.014312539998500143
+        },
+        {
+          "repetition": 26,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 22.680949140000738,
+          "throughputTasksPerSecond": 59.08944232979672,
+          "meanQueueingTimeMs": 0.002540719999524299,
+          "meanExecutionTimeMs": 1.0041598199997679,
+          "meanSchedulingOverheadMs": 0.014420939999690746
+        },
+        {
+          "repetition": 27,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.037953479998396,
+          "throughputTasksPerSecond": 64.18288132596919,
+          "meanQueueingTimeMs": 0.0022271000014734456,
+          "meanExecutionTimeMs": 0.7436248199993861,
+          "meanSchedulingOverheadMs": 0.012597919999971055
+        },
+        {
+          "repetition": 28,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 20.523047560001142,
+          "throughputTasksPerSecond": 67.49237158021371,
+          "meanQueueingTimeMs": 0.0025429199999780394,
+          "meanExecutionTimeMs": 0.957579160000896,
+          "meanSchedulingOverheadMs": 0.013489020000270103
+        },
+        {
+          "repetition": 29,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 17.626422659999808,
+          "throughputTasksPerSecond": 78.88752310043616,
+          "meanQueueingTimeMs": 0.0017843800003174693,
+          "meanExecutionTimeMs": 0.6797943999996642,
+          "meanSchedulingOverheadMs": 0.007430219999223482
+        }
+      ],
+      "responseOutlierCountTukey": 36
+    },
+    "latency-aware": {
+      "taskCount": 1500,
+      "succeededCount": 1500,
+      "failedCount": 0,
+      "successRate": 1.0,
+      "failureRate": 0.0,
+      "meanResponseTimeMs": 22.42547582066667,
+      "stdResponseTimeMs": 5.769717100988904,
+      "medianResponseTimeMs": 22.047381000000314,
+      "p95ResponseTimeMs": 32.12156600000162,
+      "p99ResponseTimeMs": 40.44417699999758,
+      "minResponseTimeMs": 13.09219000000303,
+      "maxResponseTimeMs": 72.27993200000492,
+      "meanQueueingTimeMs": 0.0028562926664186914,
+      "meanExecutionTimeMs": 0.8183157766667282,
+      "meanSchedulingOverheadMs": 0.026037519999908304,
+      "meanAbsolutePredictionErrorMs": 12.152142791666845,
+      "meanPredictionErrorMs": -12.141865468166856,
+      "meanThroughputTasksPerSecond": 71.06486524350609,
+      "meanResponseTime95CIByRepetitionMs": [
+        21.411200899633496,
+        23.68927042156681
+      ],
+      "responseTimeCIRepetitions": 30,
+      "perRepetition": [
+        {
+          "repetition": 0,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 22.07277792000008,
+          "throughputTasksPerSecond": 72.20637770398326,
+          "meanQueueingTimeMs": 0.0027109799999016104,
+          "meanExecutionTimeMs": 0.6250314600000274,
+          "meanSchedulingOverheadMs": 0.029411359999648994
+        },
+        {
+          "repetition": 1,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 22.420962799999835,
+          "throughputTasksPerSecond": 70.4225464193632,
+          "meanQueueingTimeMs": 0.0030173199997807387,
+          "meanExecutionTimeMs": 0.7748643799999263,
+          "meanSchedulingOverheadMs": 0.026375739999712097
+        },
+        {
+          "repetition": 2,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.05040929999981,
+          "throughputTasksPerSecond": 76.58915574511444,
+          "meanQueueingTimeMs": 0.002999599999675411,
+          "meanExecutionTimeMs": 0.7514144000004308,
+          "meanSchedulingOverheadMs": 0.023726479999895675
+        },
+        {
+          "repetition": 3,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 22.82552570000007,
+          "throughputTasksPerSecond": 69.56500997869045,
+          "meanQueueingTimeMs": 0.003047679999945103,
+          "meanExecutionTimeMs": 0.7529234999995242,
+          "meanSchedulingOverheadMs": 0.026031979999970645
+        },
+        {
+          "repetition": 4,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 20.546841460000213,
+          "throughputTasksPerSecond": 76.75551820979958,
+          "meanQueueingTimeMs": 0.002820539999520406,
+          "meanExecutionTimeMs": 0.5971040199999698,
+          "meanSchedulingOverheadMs": 0.026258039999811446
+        },
+        {
+          "repetition": 5,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.850636339999983,
+          "throughputTasksPerSecond": 73.61292291940035,
+          "meanQueueingTimeMs": 0.002958459999645129,
+          "meanExecutionTimeMs": 0.8153347799999756,
+          "meanSchedulingOverheadMs": 0.02527775999995356
+        },
+        {
+          "repetition": 6,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.33087513999999,
+          "throughputTasksPerSecond": 74.27186301616064,
+          "meanQueueingTimeMs": 0.0031160599994473157,
+          "meanExecutionTimeMs": 0.8553357800003141,
+          "meanSchedulingOverheadMs": 0.027088540000040667
+        },
+        {
+          "repetition": 7,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 22.58145577999996,
+          "throughputTasksPerSecond": 69.05984193588876,
+          "meanQueueingTimeMs": 0.003198100000008708,
+          "meanExecutionTimeMs": 0.7910309599994798,
+          "meanSchedulingOverheadMs": 0.028434039999556262
+        },
+        {
+          "repetition": 8,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 20.360806519999898,
+          "throughputTasksPerSecond": 80.29727219294146,
+          "meanQueueingTimeMs": 0.0029341199996997603,
+          "meanExecutionTimeMs": 0.7189956800002255,
+          "meanSchedulingOverheadMs": 0.02133925999994972
+        },
+        {
+          "repetition": 9,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 22.55524849999987,
+          "throughputTasksPerSecond": 69.71165191725225,
+          "meanQueueingTimeMs": 0.0030633599995053373,
+          "meanExecutionTimeMs": 0.9800290399997903,
+          "meanSchedulingOverheadMs": 0.02512991999989026
+        },
+        {
+          "repetition": 10,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 20.429514200000558,
+          "throughputTasksPerSecond": 74.94436433916164,
+          "meanQueueingTimeMs": 0.003894339999969816,
+          "meanExecutionTimeMs": 0.8271175199998834,
+          "meanSchedulingOverheadMs": 0.024920559999591207
+        },
+        {
+          "repetition": 11,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 20.161571879999975,
+          "throughputTasksPerSecond": 80.77059072230551,
+          "meanQueueingTimeMs": 0.002032459999754792,
+          "meanExecutionTimeMs": 0.6805197999998928,
+          "meanSchedulingOverheadMs": 0.020713799999211916
+        },
+        {
+          "repetition": 12,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 22.990836079999717,
+          "throughputTasksPerSecond": 68.01825181635809,
+          "meanQueueingTimeMs": 0.003058759999985341,
+          "meanExecutionTimeMs": 1.0186351599993941,
+          "meanSchedulingOverheadMs": 0.032385380000050645
+        },
+        {
+          "repetition": 13,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.239787840000208,
+          "throughputTasksPerSecond": 75.0124018754142,
+          "meanQueueingTimeMs": 0.0024227600001904648,
+          "meanExecutionTimeMs": 0.8836591399996542,
+          "meanSchedulingOverheadMs": 0.02831590000001597
+        },
+        {
+          "repetition": 14,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 18.482181380000256,
+          "throughputTasksPerSecond": 86.30045308738981,
+          "meanQueueingTimeMs": 0.0020603599994501566,
+          "meanExecutionTimeMs": 0.6164979000008316,
+          "meanSchedulingOverheadMs": 0.023348879999830388
+        },
+        {
+          "repetition": 15,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 19.16605033999964,
+          "throughputTasksPerSecond": 86.1307275852903,
+          "meanQueueingTimeMs": 0.002677920000278391,
+          "meanExecutionTimeMs": 0.7908302000002004,
+          "meanSchedulingOverheadMs": 0.02324525999938487
+        },
+        {
+          "repetition": 16,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 20.3509595599999,
+          "throughputTasksPerSecond": 77.93919004820485,
+          "meanQueueingTimeMs": 0.002093199999362696,
+          "meanExecutionTimeMs": 0.6793669400001818,
+          "meanSchedulingOverheadMs": 0.02396110000059707
+        },
+        {
+          "repetition": 17,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.41297417999973,
+          "throughputTasksPerSecond": 75.26305880339322,
+          "meanQueueingTimeMs": 0.002370139999984531,
+          "meanExecutionTimeMs": 0.8318775399999868,
+          "meanSchedulingOverheadMs": 0.02586325999960536
+        },
+        {
+          "repetition": 18,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 19.950375180000556,
+          "throughputTasksPerSecond": 82.42612570435534,
+          "meanQueueingTimeMs": 0.0027858199999900536,
+          "meanExecutionTimeMs": 0.8006403200003842,
+          "meanSchedulingOverheadMs": 0.023440339999797288
+        },
+        {
+          "repetition": 19,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 19.94711920000045,
+          "throughputTasksPerSecond": 82.20015433769456,
+          "meanQueueingTimeMs": 0.0025756799998634962,
+          "meanExecutionTimeMs": 0.7576978199993027,
+          "meanSchedulingOverheadMs": 0.029813580000190996
+        },
+        {
+          "repetition": 20,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.55166020000019,
+          "throughputTasksPerSecond": 73.37182225427183,
+          "meanQueueingTimeMs": 0.0027700799999001904,
+          "meanExecutionTimeMs": 0.7544410199997946,
+          "meanSchedulingOverheadMs": 0.0296509800000058
+        },
+        {
+          "repetition": 21,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.32761027999979,
+          "throughputTasksPerSecond": 73.92137004566212,
+          "meanQueueingTimeMs": 0.0033054799993988125,
+          "meanExecutionTimeMs": 0.9685135800013086,
+          "meanSchedulingOverheadMs": 0.030846499999752267
+        },
+        {
+          "repetition": 22,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 22.106351220000068,
+          "throughputTasksPerSecond": 69.94028443961095,
+          "meanQueueingTimeMs": 0.0030389399998239242,
+          "meanExecutionTimeMs": 1.0675779000006151,
+          "meanSchedulingOverheadMs": 0.03078345999980229
+        },
+        {
+          "repetition": 23,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 24.38044510000036,
+          "throughputTasksPerSecond": 60.687873008149694,
+          "meanQueueingTimeMs": 0.002967240000143647,
+          "meanExecutionTimeMs": 0.9219032800008427,
+          "meanSchedulingOverheadMs": 0.03047156000029645
+        },
+        {
+          "repetition": 24,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 30.67478509999899,
+          "throughputTasksPerSecond": 46.27961677959678,
+          "meanQueueingTimeMs": 0.0033162800001446157,
+          "meanExecutionTimeMs": 0.9848616599987144,
+          "meanSchedulingOverheadMs": 0.02852255999838235
+        },
+        {
+          "repetition": 25,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 29.063312100001202,
+          "throughputTasksPerSecond": 46.338483323480446,
+          "meanQueueingTimeMs": 0.002557660000456963,
+          "meanExecutionTimeMs": 0.6505615399993258,
+          "meanSchedulingOverheadMs": 0.023459320001420564
+        },
+        {
+          "repetition": 26,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 33.696402920000835,
+          "throughputTasksPerSecond": 39.4224210681785,
+          "meanQueueingTimeMs": 0.005110819999536034,
+          "meanExecutionTimeMs": 1.0212797399997362,
+          "meanSchedulingOverheadMs": 0.03205368000024464
+        },
+        {
+          "repetition": 27,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 23.15735097999859,
+          "throughputTasksPerSecond": 66.33166936051322,
+          "meanQueueingTimeMs": 0.0023983999984920957,
+          "meanExecutionTimeMs": 0.9114934600007837,
+          "meanSchedulingOverheadMs": 0.02291375999979209
+        },
+        {
+          "repetition": 28,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 21.045196040000302,
+          "throughputTasksPerSecond": 72.00532181540811,
+          "meanQueueingTimeMs": 0.0019219599987263792,
+          "meanExecutionTimeMs": 0.8077274200011744,
+          "meanSchedulingOverheadMs": 0.017208819999650585
+        },
+        {
+          "repetition": 29,
+          "taskCount": 50,
+          "succeededCount": 50,
+          "failedCount": 0,
+          "meanResponseTimeMs": 24.03425137999904,
+          "throughputTasksPerSecond": 62.14961685214955,
+          "meanQueueingTimeMs": 0.002464259999978822,
+          "meanExecutionTimeMs": 0.912207360000175,
+          "meanSchedulingOverheadMs": 0.02013378000119701
+        }
+      ],
+      "responseOutlierCountTukey": 31
+    }
+  },
+  "pairedComparisons": [
+    {
+      "baseline": "round-robin",
+      "pairedTaskCount": 1500,
+      "independentRepetitionCount": 30,
+      "meanBaselineMinusLatencyAwareMs": 5.927627190000065,
+      "pairedCohensDz": 2.8359570751188095,
+      "pairedMeanDifference95CIByRepetitionMs": [
+        5.195029274400363,
+        6.6552367361832845
+      ],
+      "exactTwoSidedSignTestPValueOnRepetitionMeans": 1.862645149230957e-09,
+      "wilcoxonSignedRankPValueOnRepetitionMeans": 1.862645149230957e-09,
+      "latencyAwareRelativePerformanceImprovementPercent": 20.906449596610386,
+      "wilcoxonHolmAdjustedPValue": 3.725290298461914e-09
+    },
+    {
+      "baseline": "edge-only",
+      "pairedTaskCount": 1500,
+      "independentRepetitionCount": 30,
+      "meanBaselineMinusLatencyAwareMs": -3.164020548666701,
+      "pairedCohensDz": -1.3276578229401894,
+      "pairedMeanDifference95CIByRepetitionMs": [
+        -4.002802585350052,
+        -2.353036764983445
+      ],
+      "exactTwoSidedSignTestPValueOnRepetitionMeans": 1.862645149230957e-09,
+      "wilcoxonSignedRankPValueOnRepetitionMeans": 1.862645149230957e-09,
+      "latencyAwareRelativePerformanceImprovementPercent": -16.426695200264447,
+      "wilcoxonHolmAdjustedPValue": 3.725290298461914e-09
+    }
+  ],
+  "methodology": {
+    "responseTime": "successful task API-side responseMs values from the export; failures are reported separately",
+    "confidenceIntervals": "percentile bootstrap over independent run/repetition means; no interval is emitted for fewer than two repetitions",
+    "pairedComparison": "matched trace task mean response differences, summarized at the repetition level",
+    "signTest": "exact two-sided sign test over nonzero repetition-level paired mean differences; SciPy Wilcoxon signed-rank test is also applied to repetition means, with Holm correction across baseline contrasts",
+    "outliers": "Tukey 1.5-IQR response-time flags are counted and retained; no values are removed",
+    "predictionError": "uses the exported modelled actual component total (network + worker queue + worker execution) minus predicted total; API response time is separate",
+    "networkLimit": "configured simulated RTT on single-host containers is not geographic network evidence",
+    "interpretation": "descriptive and comparative output only; no performance benefit or statistical significance is assumed"
+  }
+}

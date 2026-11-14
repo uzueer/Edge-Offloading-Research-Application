@@ -17,7 +17,7 @@ services:
 
   edge-1:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile.worker
     environment:
       NODE_ID: edge-1
@@ -36,7 +36,7 @@ services:
 
   edge-2:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile.worker
     environment:
       NODE_ID: edge-2
@@ -55,7 +55,7 @@ services:
 
   cloud-1:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile.worker
     environment:
       NODE_ID: cloud-1
@@ -74,7 +74,7 @@ services:
 
   api:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile.api
     environment:
       DATABASE_URL: postgres://edge:${POSTGRES_PASSWORD:-edge_dev_only}@postgres:5432/edge_offloading
@@ -102,7 +102,7 @@ services:
 
   dashboard:
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile.web
     environment:
       API_PROXY_TARGET: http://api:3000

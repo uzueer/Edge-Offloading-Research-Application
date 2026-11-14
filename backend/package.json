@@ -1,0 +1,15 @@
+{
+  "name": "edge-offloading-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node test/run.js",
+    "db:migrate": "node src/db/migrate.js",
+    "start": "node src/api/server.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  }
+}
