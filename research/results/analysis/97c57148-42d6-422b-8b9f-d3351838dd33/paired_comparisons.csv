@@ -1,3 +1,0 @@
-baseline,pairedTaskCount,independentRepetitionCount,meanBaselineMinusLatencyAwareMs,pairedCohensDz,pairedMeanDifference95CIByRepetitionMs,exactTwoSidedSignTestPValueOnRepetitionMeans,wilcoxonSignedRankPValueOnRepetitionMeans,latencyAwareRelativePerformanceImprovementPercent,wilcoxonHolmAdjustedPValue
-round-robin,1500,30,8.273832632002575,5.008279578284057,"[7.679310079223031, 8.839820525418826]",1.862645149230957e-09,1.862645149230957e-09,23.19709869596379,3.725290298461914e-09
-edge-only,1500,30,-6.813527334664173,-3.484583931913741,"[-7.517450172478469, -6.125627698284311]",1.862645149230957e-09,1.862645149230957e-09,-33.107241662521226,3.725290298461914e-09

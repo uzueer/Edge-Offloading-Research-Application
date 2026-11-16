@@ -1,10 +1,10 @@
 import { randomInt, randomUUID } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
-import { createEdgeOnlyScheduler, createLatencyAwareScheduler, createRoundRobinScheduler } from '../schedulers.js';
+import { createEdgeOnlyScheduler, createFewestActiveTasksScheduler, createLatencyAwareScheduler, createRoundRobinScheduler } from '../schedulers.js';
 import { predictNodeLatency } from '../latency-model.js';
 import { buildTrace, summarizeRun } from './metrics.js';
 
-export const EXPERIMENT_ALGORITHMS = ['round-robin', 'edge-only', 'latency-aware'];
+export const EXPERIMENT_ALGORITHMS = ['round-robin', 'edge-only', 'fewest-active-tasks', 'latency-aware'];
 
 function finiteInRange(value, name, min, max) {
   if (typeof value !== 'number' || !Number.isFinite(value) || value < min || value > max) {
@@ -62,6 +62,7 @@ const average = values => values.length ? values.reduce((sum, value) => sum + va
 function newScheduler(algorithm, maxMeasurementAgeMs) {
   if (algorithm === 'round-robin') return createRoundRobinScheduler();
   if (algorithm === 'edge-only') return createEdgeOnlyScheduler();
+  if (algorithm === 'fewest-active-tasks') return createFewestActiveTasksScheduler();
   return createLatencyAwareScheduler({ maxMeasurementAgeMs });
 }
 

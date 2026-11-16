@@ -65,6 +65,37 @@ export function createEdgeOnlyScheduler() {
   };
 }
 
+/** Select the eligible worker with the fewest active tasks (ties use node id). */
+export function createFewestActiveTasksScheduler() {
+  let tieCursor = 0;
+  return {
+    schedule(input) {
+      validateInput(input);
+      const { task, nodes } = input;
+      const candidates = nodes.map(node => {
+        const eligibility = checkNodeEligibility(task, node);
+        const activeTasks = node.status?.activeTasks;
+        if (!Number.isSafeInteger(activeTasks) || activeTasks < 0) {
+          return { nodeId: node.id, eligible: false, reasons: ['invalid-active-task-count'], activeTasks: null };
+        }
+        return { nodeId: node.id, eligible: eligibility.eligible, reasons: eligibility.reasons, activeTasks };
+      });
+      const nodeOrder = new Map(nodes.map((node, index) => [node.id, index]));
+      const ranked = candidates.filter(candidate => candidate.eligible)
+        .slice().sort((a, b) => {
+          const loadDifference = a.activeTasks - b.activeTasks;
+          if (loadDifference) return loadDifference;
+          const aDistance = (nodeOrder.get(a.nodeId) - tieCursor + nodes.length) % nodes.length;
+          const bDistance = (nodeOrder.get(b.nodeId) - tieCursor + nodes.length) % nodes.length;
+          return aDistance - bDistance;
+        });
+      const selectedNode = ranked.length ? nodes.find(node => node.id === ranked[0].nodeId) : null;
+      if (selectedNode) tieCursor = (nodeOrder.get(selectedNode.id) + 1) % nodes.length;
+      return result('fewest-active-tasks', selectedNode, candidates);
+    },
+  };
+}
+
 /** Choose minimum predicted total latency; ties resolve by ascending node id. */
 export function createLatencyAwareScheduler({ maxMeasurementAgeMs }) {
   if (typeof maxMeasurementAgeMs !== 'number' || !Number.isFinite(maxMeasurementAgeMs) || maxMeasurementAgeMs < 0) {

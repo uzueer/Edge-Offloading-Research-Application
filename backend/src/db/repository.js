@@ -1,6 +1,6 @@
 import { withTransaction } from './pool.js';
 
-const ALGORITHMS = new Set(['round-robin', 'edge-only', 'latency-aware']);
+const ALGORITHMS = new Set(['round-robin', 'edge-only', 'fewest-active-tasks', 'latency-aware']);
 const NODE_ROLES = new Set(['edge', 'cloud']);
 const MEASUREMENT_UNITS = new Map([
   ['network_rtt', 'ms'], ['cpu_utilization', 'percent'], ['available_memory', 'MB'],

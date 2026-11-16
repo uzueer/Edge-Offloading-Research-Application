@@ -14,9 +14,9 @@ RESEARCH_DIR = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input-dir", type=Path, default=RESEARCH_DIR / "results/raw")
-    parser.add_argument("--output-dir", type=Path, default=RESEARCH_DIR / "results/graphs")
-    parser.add_argument("--analysis-dir", type=Path, default=RESEARCH_DIR / "results/analysis")
+    parser.add_argument("--input-dir", type=Path, default=RESEARCH_DIR / "results/final/raw")
+    parser.add_argument("--output-dir", type=Path, default=RESEARCH_DIR / "results/final/graphs")
+    parser.add_argument("--analysis-dir", type=Path, default=RESEARCH_DIR / "results/final/analysis")
     args = parser.parse_args()
     rows = []
     for path in sorted(args.input_dir.glob("*.json")):
@@ -26,18 +26,19 @@ def main():
         scenario = config.get("scenario") or {}
         network = scenario.get("networkProfile", "unknown")
         task_count = scenario.get("taskCount", config.get("taskCount"))
+        capacity = scenario.get("capacityProfile", "unknown")
         for record in payload.get("results", []):
             metrics = record.get("metrics") or {}
             if metrics.get("resultType") != "task":
                 continue
             rows.append({"algorithm": record.get("algorithm"), "status": metrics.get("status"),
                 "responseMs": metrics.get("actualResponseMs"), "repetition": record.get("repetition"),
-                "taskCount": task_count, "networkProfile": network})
+                "taskCount": task_count, "networkProfile": network, "capacityProfile": capacity})
     if not rows:
         raise SystemExit(f"No task rows found under {args.input_dir}")
     frame = pd.DataFrame(rows)
     successful = frame[frame.status == "succeeded"]
-    grouped = successful.groupby(["algorithm", "networkProfile", "taskCount"], as_index=False).agg(
+    grouped = successful.groupby(["algorithm", "networkProfile", "capacityProfile", "taskCount"], as_index=False).agg(
         meanResponseMs=("responseMs", "mean"), medianResponseMs=("responseMs", "median"),
         p95ResponseMs=("responseMs", lambda values: values.quantile(.95)))
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -72,10 +73,15 @@ def main():
     pd.DataFrame(matrix_tests).to_csv(args.output_dir / "paired_matrix_comparisons.csv", index=False)
     for dimension, filename, title, xlabel in [
         ("networkProfile", "performance_by_rtt", "Response time by configured simulated RTT profile", "Simulated RTT profile"),
-        ("taskCount", "performance_by_workload", "Response time by task count", "Tasks per policy and repetition"),
+        ("capacityProfile", "performance_by_capacity", "Response time by configured capacity profile", "Capacity profile"),
     ]:
         pivot = grouped.pivot_table(index=dimension, columns="algorithm", values="meanResponseMs", aggfunc="mean")
         ax = pivot.plot(marker="o", figsize=(8.5, 5.2))
+        if "fewest-active-tasks" in pivot.columns:
+            line = next(line for line in ax.lines if line.get_label() == "fewest-active-tasks")
+            line.set_linestyle(":")
+            line.set_marker("D")
+            line.set_zorder(10)
         ax.set_title(title + " (same-host workers)")
         ax.set_xlabel(xlabel)
         ax.set_ylabel("Mean successful API response time (ms)")

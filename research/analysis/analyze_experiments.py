@@ -18,10 +18,12 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-ALGORITHMS = ["round-robin", "edge-only", "latency-aware"]
+ALGORITHMS = ["round-robin", "edge-only", "fewest-active-tasks", "latency-aware"]
+ALGORITHM_COLORS = ["#6c9bcf", "#83b692", "#b7a1d8", "#e09f7d"]
 ALGORITHM_LABELS = {
     "round-robin": "Round Robin",
     "edge-only": "Edge-only",
+    "fewest-active-tasks": "Fewest active tasks",
     "latency-aware": "Latency-aware",
 }
 
@@ -205,7 +207,7 @@ def analyze(experiment: dict[str, Any], results: list[dict[str, Any]], *, seed: 
         aggregates.append({"algorithm": algorithm, **summary})
 
     comparisons = []
-    for baseline in ["round-robin", "edge-only"]:
+    for baseline in ["round-robin", "edge-only", "fewest-active-tasks"]:
         paired = successful[successful["algorithm"].isin([baseline, "latency-aware"])].pivot_table(
             index=["repetition", "traceTaskId"], columns="algorithm", values="responseMs", aggfunc="mean"
         )
@@ -243,7 +245,7 @@ def analyze(experiment: dict[str, Any], results: list[dict[str, Any]], *, seed: 
 
     raw_p = [row.get("wilcoxonSignedRankPValueOnRepetitionMeans") for row in comparisons]
     valid_p = [(index, value) for index, value in enumerate(raw_p) if value is not None]
-    # Holm step-down adjusted p-values across the two planned baseline contrasts.
+    # Holm step-down adjusted p-values across the three baseline contrasts.
     running_max = 0.0
     for rank, (index, value) in enumerate(sorted(valid_p, key=lambda item: item[1])):
         adjusted = min(1.0, (len(valid_p) - rank) * value)
@@ -322,7 +324,7 @@ def create_figures(experiment: dict[str, Any], tasks: pd.DataFrame, report: dict
         values = [report["algorithmSummaries"][algorithm][metric] for algorithm in ALGORITHMS]
         fig, ax = plt.subplots(figsize=(8.2, 5.2))
         ax.bar([ALGORITHM_LABELS[item] for item in ALGORITHMS], [v if v is not None else 0 for v in values],
-               color=["#6c9bcf", "#83b692", "#e09f7d"])
+               color=ALGORITHM_COLORS)
         ax.set_title(f"{label}\n{title}")
         ax.set_ylabel(label)
         ax.grid(axis="y", alpha=0.25)
@@ -331,7 +333,7 @@ def create_figures(experiment: dict[str, Any], tasks: pd.DataFrame, report: dict
 
     fig, ax = plt.subplots(figsize=(8.2, 5.2))
     success = [report["algorithmSummaries"][item]["successRate"] * 100 for item in ALGORITHMS]
-    ax.bar([ALGORITHM_LABELS[item] for item in ALGORITHMS], success, color=["#6c9bcf", "#83b692", "#e09f7d"])
+    ax.bar([ALGORITHM_LABELS[item] for item in ALGORITHMS], success, color=ALGORITHM_COLORS)
     ax.set_ylim(0, 100)
     ax.set_title(f"Task success rate\n{title}")
     ax.set_ylabel("Successful tasks (%)")
@@ -372,7 +374,7 @@ def create_figures(experiment: dict[str, Any], tasks: pd.DataFrame, report: dict
         values = [row["throughputTasksPerSecond"] for row in report["algorithmSummaries"][algorithm]["perRepetition"]
                   if row["throughputTasksPerSecond"] is not None]
         throughput.append(float(np.mean(values)) if values else 0.0)
-    ax.bar([ALGORITHM_LABELS[item] for item in ALGORITHMS], throughput, color=["#6c9bcf", "#83b692", "#e09f7d"])
+    ax.bar([ALGORITHM_LABELS[item] for item in ALGORITHMS], throughput, color=ALGORITHM_COLORS)
     ax.set_title(f"Throughput by algorithm\n{title}")
     ax.set_ylabel("Successful tasks per second")
     ax.grid(axis="y", alpha=0.25)
@@ -474,8 +476,9 @@ def _json_safe(value: Any) -> Any:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", required=True, help="Experiment API export (.json or .csv)")
-    default_output_dir = Path(__file__).resolve().parents[1] / "results/analysis"
-    parser.add_argument("--output-dir", default=str(default_output_dir), help="Directory for analysis tables and figures")
+    default_output_dir = Path(__file__).resolve().parents[1] / "results/final/analysis"
+    parser.add_argument("--output-dir", default=str(default_output_dir), help="Directory for analysis tables and reports")
+    parser.add_argument("--plots", action="store_true", help="Also generate exploratory per-run plots")
     parser.add_argument("--seed", type=int, default=0, help="Seed for bootstrap resampling")
     parser.add_argument("--bootstrap-samples", type=int, default=5000)
     args = parser.parse_args(argv)
@@ -486,7 +489,7 @@ def main(argv: list[str] | None = None) -> int:
     (output / "analysis.json").write_text(json.dumps(_json_safe(report), indent=2, allow_nan=False) + "\n", encoding="utf-8")
     pd.DataFrame(report["algorithmSummaries"]).T.rename_axis("algorithm").to_csv(output / "algorithm_summary.csv")
     pd.DataFrame(report["pairedComparisons"]).to_csv(output / "paired_comparisons.csv", index=False)
-    figures = create_figures(experiment, tasks, report, output)
+    figures = create_figures(experiment, tasks, report, output) if args.plots else []
     print(json.dumps({"experimentId": experiment.get("id"), "taskRows": len(tasks),
                       "figures": [str(path) for path in figures], "analysis": str(output / "analysis.json")}, indent=2))
     return 0

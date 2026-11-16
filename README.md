@@ -1,8 +1,9 @@
 # Edge Offloading Research Application
 
-A research prototype for comparing **Round Robin**, **Edge-only**, and **Latency-aware** scheduling across three containerized workers: `edge-1`, `edge-2`, and `cloud-1`.
+A research prototype for comparing **Round Robin**, **Edge-only**, **Fewest active tasks**, and **Latency-aware** scheduling across three containerized workers: `edge-1`, `edge-2`, and `cloud-1`.
 
 The stack uses React/Vite, Node.js/Express, PostgreSQL, Docker Compose, and Python analysis tools. Network RTT values in the Compose and benchmark configurations are simulated timer delays. All worker containers run on the same physical host.
+
 
 ## Project layout
 
@@ -17,11 +18,13 @@ research/                 all benchmarking, analysis, and results
   experiments/            benchmark configuration and runner scripts
   analysis/               statistics code, requirements, Python tests
   results/
-    raw/                  original JSON and CSV experiment exports
-    warmups/              separate warm-up exports
-    analysis/             per-experiment reports, tables, and plots
-    graphs/               combined scenario tables and plots
+    final/                the single retained benchmark result set
+      raw/                measured JSON and CSV exports
+      warmups/            separate warm-up exports
+      analysis/           per-run statistics tables and reports
+      graphs/             final RTT/capacity plots and comparison tables
   benchmark_visualization.ipynb  interactive results notebook
+docs/                     submitted report and dashboard evidence
 docker-compose.yml        local multi-container stack
 README.md                 this project guide
 ```
@@ -75,7 +78,7 @@ In the dashboard's **Submit a task** form, choose a scheduler and provide worklo
 
 ### Run a dashboard experiment
 
-In **Run experiment**, select task and repetition counts, workload and iteration ranges, arrival interval, random seed, and optional per-worker capacity, slot, memory, and RTT overrides. Each repetition uses the same generated task trace for all three policies. The service rotates policy order and waits for workers to become idle before replaying a policy. Results and CSV/JSON exports are available from **Experiment results**.
+In **Run experiment**, select task and repetition counts, workload and iteration ranges, arrival interval, random seed, and optional per-worker capacity, slot, memory, and RTT overrides. Each repetition uses the same generated task trace for all four policies. The service rotates policy order and waits for workers to become idle before replaying a policy. Results and CSV/JSON exports are available from **Experiment results**.
 
 ## Benchmark matrix and analysis
 
@@ -84,34 +87,34 @@ The reproducible benchmark runner is `research/experiments/run_benchmarks.py`; i
 - Task counts: 50, 100, 250, and 500.
 - Simulated RTT profiles: low (5/10/25 ms), medium (10/30/60 ms), high (20/50/100 ms), and asymmetric (5/40/15 ms) for edge-1/edge-2/cloud-1.
 - Capacity profiles: default, edge-faster, and cloud-faster.
-- 30 seeded repetitions per configuration, comparing all three policies.
+- 30 seeded repetitions per configuration, comparing all four policies.
 
-That is 48 configurations and 4,320 policy-level runs, before the separate warm-ups. The full matrix is a large, long-running workload. Start Docker Compose first, then run:
+That is 48 configurations and 5,760 policy-level runs, before the separate warm-ups. The full matrix is a large, long-running workload. Start Docker Compose first, then run:
 
 ```bash
 python research/experiments/run_benchmarks.py
 ```
 
-The runner writes raw measured JSON/CSV files to `research/results/raw/`, separate warm-ups to `research/results/warmups/`, and a progress manifest to `research/results/manifest.json`. Use `--resume` to skip configurations already marked complete and reconnect to an experiment that is still running:
+The runner writes results under `research/results/final/`: raw measured JSON/CSV files in `raw/`, separate warm-ups in `warmups/`, and a progress manifest in `manifest.json`. Use `--resume` to skip configurations already marked complete and reconnect to an experiment that is still running:
 
 ```bash
 python research/experiments/run_benchmarks.py --resume
 ```
 
-After runs finish, create per-experiment statistics and plots, then combined RTT/workload plots and matrix-wide paired comparisons:
+After runs finish, create per-experiment statistics tables and the final RTT/capacity plots with matrix-wide paired comparisons:
 
 ```bash
-for file in research/results/raw/*.json; do
+for file in research/results/final/raw/*.json; do
   id=$(basename "$file" .json)
-  python research/experiments/analyze_results.py \
+  python research/analysis/analyze_experiments.py \
     --input "$file" \
-    --output-dir "research/results/analysis/$id"
+    --output-dir "research/results/final/analysis/$id"
 done
 
 python research/experiments/generate_graphs.py
 ```
 
-`generate_graphs.py` reads the default `research/results/` paths automatically. Its outputs include `scenario_summary.csv`, `paired_matrix_comparisons.csv`, and PNG/PDF plots under `research/results/graphs/`. Per-experiment statistics use repetitions as the independent samples; task-level observations are descriptive. Paired Wilcoxon tests have Holm corrections within each export and across the available matrix comparisons. Outliers are flagged and retained.
+The analyzer writes summary tables without extra plots by default; pass `--plots` only when per-run exploratory plots are needed. `generate_graphs.py` reads from and writes to `research/results/final/` by default. It produces the RTT and capacity plots, `scenario_summary.csv`, and `paired_matrix_comparisons.csv`. Per-experiment statistics use repetitions as the independent samples; task-level observations are descriptive. Paired Wilcoxon tests have Holm corrections within each export and across the available matrix comparisons. Outliers are flagged and retained.
 
 ### Explore graphs in the notebook
 
@@ -123,15 +126,36 @@ source .venv/bin/activate
 python -m pip install -r research/analysis/requirements.txt
 ```
 
-Open `research/benchmark_visualization.ipynb` in VS Code or Jupyter, select the `.venv` Python kernel, and choose **Run All**. The notebook reads the raw exports and paired comparison table, displays response-time-by-RTT and capacity plots, worker distribution, and paired comparisons. It saves additional PNGs under `research/results/graphs/`.
+Open `research/benchmark_visualization.ipynb` in VS Code or Jupyter, select the `.venv` Python kernel, and choose **Run All**. It reads the final raw exports and displays the existing paper plots, worker placement counts, and paired comparison table without creating duplicate graph files.
 
 ## Current results and limits
 
-The saved completed batch covers only the 50-task workload: 12 RTT/capacity configurations, 30 repetitions each, and 54,000 task records. The interrupted 100-task experiment and unrun 250/500-task workloads are excluded.
+The single retained result set is `research/results/final/`: 12 configurations (4 simulated RTT profiles × 3 capacity profiles), 30 repetitions, and 50 tasks per repetition for each of four policies. All 72,000 measured task records succeeded. The 100-task experiment was interrupted and the 250/500-task workloads were not run; they are excluded.
 
-All three policies completed 18,000/18,000 tasks successfully. Mean API response times were 59.854 ms for Round Robin, 38.582 ms for Edge-only, and 40.543 ms for Latency-aware. Latency-aware was faster than Round Robin in all 12 configurations. It was faster than Edge-only in 3 of 12 configurations and slower overall. These observations apply only to this 50-task, same-host setup with simulated RTTs; they do not establish performance on geographically distributed edge/cloud infrastructure.
+| Scheduler | Mean API response (ms) | SD of 360 repetition means (ms) | Median (ms) | 95th percentile (ms) | Successful tasks |
+|---|---:|---:|---:|---:|---:|
+| Round Robin | 48.95 | 17.21 | 41.77 | 113.73 | 18,000/18,000 |
+| Edge-only | **28.40** | 11.12 | **24.85** | **53.16** | 18,000/18,000 |
+| Fewest active tasks | 49.02 | 17.17 | 41.85 | 113.62 | 18,000/18,000 |
+| Latency-aware | 30.26 | 10.66 | 27.49 | 57.41 | 18,000/18,000 |
 
-Worker MIPS, execution slots, and memory are configured scheduler inputs, not calibrated measurements of separate machines. The API response time is recorded separately from simulated network delay and worker queue/execution times. See the raw exports and analysis tables for the detailed data and statistical comparisons.
+Paired tests use repetition means, with Holm correction across 36 comparisons (three baselines × 12 configurations). Latency-aware was significantly faster than Round Robin in 11/12 configurations and Fewest active tasks in 12/12. It was faster than Edge-only in 3/12 and slower in 9/12; four differences favoring Edge-only were significant, none favoring latency-aware were significant, and eight were not significant. This result describes only the completed workload and this implementation.
+
+The worker containers, API, and database run on the same physical host. RTT values are injected timer delays, not measurements over a real network. Worker MIPS, slots, and memory are configured scheduler inputs, not calibrated capacities of separate machines. Workload MI is not calibrated against the worker's CPU-loop iterations, and API response time includes API/database overhead beyond the latency predictor. Treat these as limitations when interpreting or presenting the comparison.
+
+### Results pictures
+
+These plots use the verified fresh batch; they do not represent the unrun larger workloads.
+
+**Mean response time by simulated network RTT**:
+
+![Mean response time by simulated network RTT](research/results/final/graphs/performance_by_rtt.png)
+
+**Mean response time by configured capacity profile**:
+
+![Mean response time by configured capacity profile](research/results/final/graphs/performance_by_capacity.png)
+
+Raw JSON/CSV exports, per-run summary tables, paired comparisons, and the two final plots are kept together in `research/results/final/`.
 
 ## Tests and build
 

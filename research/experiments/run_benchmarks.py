@@ -59,7 +59,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=ROOT / "experiment_config.json")
     parser.add_argument("--base-url")
-    parser.add_argument("--output-dir", type=Path, default=ROOT.parent / "results")
+    parser.add_argument("--output-dir", type=Path, default=ROOT.parent / "results" / "final")
     parser.add_argument("--resume", action="store_true", help="Skip matrix cells already completed in the local manifest")
     parser.add_argument("--capacity-profile", choices=["all", "edge_faster", "cloud_faster", "default"], default="all")
     args = parser.parse_args()
@@ -73,7 +73,7 @@ def main() -> int:
     if args.capacity_profile != "all":
         profiles = {args.capacity_profile: profiles[args.capacity_profile]}
     total = len(config["taskCounts"]) * len(config["networkProfiles"]) * len(profiles)
-    print(f"Matrix: {total} configurations × {config['repetitions']} repetitions × 3 policies")
+    print(f"Matrix: {total} configurations × {config['repetitions']} repetitions × 4 policies")
     print("Network profiles are simulated RTT values; worker containers share the host.")
 
     for tasks in config["taskCounts"]:
@@ -130,7 +130,7 @@ def main() -> int:
                         status = request_json(f"{base}/experiments/{experiment_id}")
                         progress = experiment_progress(status)
                         print(f"{key}: {progress.get('completedRuns', 0)}/{config['repetitions']} repetitions; "
-                              f"{progress.get('completedTasks', 0)}/{config['repetitions'] * tasks * 3} tasks", end="\r")
+                              f"{progress.get('completedTasks', 0)}/{config['repetitions'] * tasks * 4} tasks", end="\r")
                         if progress.get("status") in ("succeeded", "failed", "interrupted", "unavailable"):
                             break
                         time.sleep(2)

@@ -7,7 +7,7 @@ import {
   estimateNetworkDelayMs,
   estimateQueueingDelayMs,
 } from '../src/latency-model.js';
-import { createEdgeOnlyScheduler, createLatencyAwareScheduler, createRoundRobinScheduler } from '../src/schedulers.js';
+import { createEdgeOnlyScheduler, createFewestActiveTasksScheduler, createLatencyAwareScheduler, createRoundRobinScheduler } from '../src/schedulers.js';
 
 const nowMs = 1_000_000;
 const task = (overrides = {}) => ({ id: 'task-1', workloadMI: 10, memoryMB: 100, queue: { workAheadMI: 0 }, ...overrides });
@@ -97,6 +97,24 @@ test('latency-aware tie breaks by node id and reports no eligible node', () => {
   assert.equal(none.selectedNode, null);
   assert.equal(none.decision, 'no-eligible-node');
   assert.throws(() => createLatencyAwareScheduler({ maxMeasurementAgeMs: -1 }), /non-negative/);
+});
+
+test('fewest-active-tasks selects the least-active eligible worker and rotates equal-load ties', () => {
+  const scheduler = createFewestActiveTasksScheduler();
+  const nodes = [
+    node('edge-1', { status: { activeTasks: 0 } }),
+    node('edge-2', { status: { activeTasks: 0 } }),
+    node('cloud-1', { status: { activeTasks: 0 } }),
+  ];
+  const selected = [0, 1, 2, 3].map(() => scheduler.schedule({ task: task(), nodes }).selectedNode.id);
+  assert.deepEqual(selected, ['edge-1', 'edge-2', 'cloud-1', 'edge-1']);
+  nodes[0].status.activeTasks = 2;
+  nodes[1].status.activeTasks = 0;
+  nodes[2].healthy = false;
+  const decision = scheduler.schedule({ task: task(), nodes });
+  assert.equal(decision.algorithm, 'fewest-active-tasks');
+  assert.equal(decision.selectedNode.id, 'edge-2');
+  assert.equal(decision.candidates[2].eligible, false);
 });
 
 test('Round Robin rotates deterministically across eligible nodes and skips unavailable nodes', () => {

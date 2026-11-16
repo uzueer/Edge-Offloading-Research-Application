@@ -1,11 +1,11 @@
 import express from 'express';
 import { randomUUID } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
-import { createEdgeOnlyScheduler, createLatencyAwareScheduler, createRoundRobinScheduler } from '../schedulers.js';
+import { createEdgeOnlyScheduler, createFewestActiveTasksScheduler, createLatencyAwareScheduler, createRoundRobinScheduler } from '../schedulers.js';
 import { createExperimentService } from '../experiments/service.js';
 import { exportExperimentCsv, exportExperimentJson } from '../experiments/export.js';
 
-const ALGORITHMS = new Set(['round-robin', 'edge-only', 'latency-aware']);
+const ALGORITHMS = new Set(['round-robin', 'edge-only', 'fewest-active-tasks', 'latency-aware']);
 const UINT32_MAX = 0xffff_ffff;
 
 function positiveInt(value, name, max) {
@@ -33,6 +33,7 @@ function createSchedulers(maxMeasurementAgeMs) {
   return {
     'round-robin': createRoundRobinScheduler(),
     'edge-only': createEdgeOnlyScheduler(),
+    'fewest-active-tasks': createFewestActiveTasksScheduler(),
     'latency-aware': createLatencyAwareScheduler({ maxMeasurementAgeMs }),
   };
 }
@@ -94,7 +95,7 @@ export function createApp({ pool, repository, workerClient, experimentService: i
     const body = request.body;
     if (!body || typeof body !== 'object' || Array.isArray(body)) throw Object.assign(new TypeError('JSON object body is required'), { statusCode: 400 });
     const algorithm = body.algorithm ?? 'latency-aware';
-    if (!ALGORITHMS.has(algorithm)) throw Object.assign(new TypeError('algorithm must be round-robin, edge-only, or latency-aware'), { statusCode: 400 });
+    if (!ALGORITHMS.has(algorithm)) throw Object.assign(new TypeError('algorithm must be round-robin, edge-only, fewest-active-tasks, or latency-aware'), { statusCode: 400 });
     const taskId = body.id === undefined ? randomUUID() : requiredString(body.id, 'id');
     const workloadMI = nonNegative(body.workloadMI, 'workloadMI');
     const iterations = positiveInt(body.iterations, 'iterations', maxIterations);
